@@ -12,18 +12,42 @@ public class Main {
         Random rand = new Random();
         for (int i = 0; i < 100; i++) {
             pole1.add(rand.nextInt(100));
+        }
+        for (int i = 0; i < 50; i++) {
             pole2.add(rand.nextInt(100));
         }
-        if(pole1 == pole2) {
-            System.out.println("ANO");
+        boolean x = true;
+        if(pole1.size() == pole2.size()) {
+            x = false;
+            for (int i = 0; i < pole1.size(); i++) {
+                if(pole1.get(i) != pole2.get(i)){
+                    x = true;
+                    break;
+                }
+            }
+        }
+
+        if(x) {
+            System.out.println("Pole nejsou stejné");
         } else{
-            System.out.println("NE");
+            System.out.println("Pole jsou stejné");
+        }
+
+        if(pole1.size()<pole2.size()){
+            for (int i = pole2.size()-pole1.size(); i > 0; i--) {
+                pole2.remove(i);
+            }
+        } else {
+            for (int i = pole1.size()-pole2.size(); i > 0; i--) {
+                pole1.remove(i);
+            }
         }
         for (int i = 0; i < pole1.size(); i++) {
             if(pole1.get(i) != pole2.get(i)) {
                 pole2.set(i, pole1.get(i));
             }
         }
+
         System.out.println("Pole1: "+pole1);
         System.out.println("Pole2: "+pole2);
 
